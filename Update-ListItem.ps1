@@ -83,3 +83,5 @@ Function Update-ListItem()
   END {Write-Verbose "$($MyInvocation.MyCommand.Name)::End"}
 
 }
+
+Set-Alias spuli Update-ListItem
