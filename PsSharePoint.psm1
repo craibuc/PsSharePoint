@@ -7,6 +7,6 @@ Get-ChildItem "$PSScriptRoot\*.ps1" |
     Where-Object { $_.Name -like '*.ps1' -and $_.Name -notlike '__*' -and $_.Name -notlike '*.Tests*' } | 
     % { . $_ }
 
-Export-ModuleMember Add-Attachments
+Export-ModuleMember Add-Attachments, Update-ListItem
 
-Export-ModuleMember -Alias spaa
+Export-ModuleMember -Alias spaa, spuli
