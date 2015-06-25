@@ -67,9 +67,7 @@ Function Update-ListItem()
 
     # Invoke-WebRequest throws System.Net.WebException
     catch [System.Net.WebException] {
-        write-host $_.Exception.Message
-        Write-Host $_.Exception.Response.StatusCode.Value__
-        Write-Host $_.Exception.Response.StatusDescription
+      throw
     }
 
     finally {
