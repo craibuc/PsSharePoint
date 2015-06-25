@@ -65,7 +65,6 @@ Function Add-Attachments()
             try {
                 # reset each pass to ensure that prior response isn't reused
                 $response=$null
-                # returns Microsoft.PowerShell.Commands.HtmlWebResponseObject
                 $response = Invoke-WebRequest -Uri $endpointUri -Method POST -UseDefaultCredentials -Body $fileContent -Headers $headers -ContentType "*/*"
             }
 
@@ -77,7 +76,7 @@ Function Add-Attachments()
             }
 
             finally {
-                # return response object
+                # returns Microsoft.PowerShell.Commands.HtmlWebResponseObject
                 $response
             }
 
