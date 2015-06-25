@@ -45,14 +45,13 @@ Function Update-ListItem()
         [Hashtable]$Properties
     )
 
-  BEGIN {Write-Verbose "$($MyInvocation.MyCommand.Name)::Begin"}
+  BEGIN { Write-Verbose "$($MyInvocation.MyCommand.Name)::Begin" }
 
   PROCESS {
     Write-Verbose "$($MyInvocation.MyCommand.Name)::Process"
 
-    #construct endpoint for updaing of List Item   
     $endpointUrl = "$WebUrl/_vti_bin/listdata.svc/$ListName($ItemId)"
-    Write-Verbose "endpointurl: $endpointurl"
+    Write-Verbose "Endpoint Url: $endpointurl"
 
     $headers = @{
        "X-HTTP-Method" = "MERGE";
@@ -60,7 +59,7 @@ Function Update-ListItem()
     }
 
     $ItemPayload = $Properties | ConvertTo-Json
-    Write-Houst $ItemPayload
+    Write-Verbose "Item Payload: $ItemPayload"
     
     try {
         $response = Invoke-WebRequest -Uri $endpointUrl -Method Post -UseDefaultCredentials -Headers $headers -ContentType "application/json" -Body $ItemPayload

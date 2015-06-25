@@ -5,13 +5,18 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
 Describe "Update-ListItem" {
 
     # arrange
+    $url='http://apps/ReportRequests'
+    $list='ReportRequests'
+    $id=7353
+    $payload=@{ProjectName="Lorem Ipsum: $(get-date -format o)"}
 
-    It "Should do something useful" {
+    It "Should modify a list item's state" {
 
         # act
+        $response = Update-ListItem -WebUrl $url -listName $list -itemId $id -properties $payload -verbose
 
         # assert
-        $False | Should Be $True
+        $response.StatusCode | Should Be 204 # No Content 
 
     }
 
