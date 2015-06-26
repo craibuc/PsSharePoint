@@ -12,5 +12,5 @@ Export-ModuleMember Get-ListItem, Update-ListItem, Get-PropertyValue
 #Export-ModuleMember -Alias spgli, spuli
 
 # ListItem Attachments
-Export-ModuleMember Add-Attachments, Update-Attachments, Remove-Attachments
+Export-ModuleMember Add-Attachments, Update-Attachments, Remove-Attachments, Get-Attachments, Save-Attachments
 #Export-ModuleMember -Alias spaa, spua
