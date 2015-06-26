@@ -1,19 +1,27 @@
-﻿function Get-PropertyValue
+﻿<#
+
+.EXMAPLE
+PS > 'value'
+#>
+function Get-PropertyValue
 {
 
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory=$True)]
+        [Parameter(Mandatory=$True,Position=1)]
         [string]$WebUrl,
 
-        [Parameter(Mandatory=$True)]
+        [Parameter(Mandatory=$True,Position=2)]
         [string]$ListName,
 
-        [Parameter(Mandatory=$True)]
+        [Parameter(Mandatory=$True,Position=3)]
         [int]$ItemId, 
 
-        [Parameter(Mandatory=$True)]
-        [string]$Property
+        [Parameter(Mandatory=$True,Position=4)]
+        [string]$Property,
+
+        [Parameter(Mandatory=$False,Position=5)]
+        [string]$Function='value'
     )
 
   BEGIN { Write-Verbose "$($MyInvocation.MyCommand.Name)::Begin" }
@@ -21,7 +29,7 @@
   PROCESS {
     Write-Verbose "$($MyInvocation.MyCommand.Name)::Process"
 
-    $endpointUrl = "$WebUrl/_vti_bin/listdata.svc/$ListName($ItemId)/$Property/\`$value"
+    $endpointUrl = "$WebUrl/_vti_bin/listdata.svc/$ListName($ItemId)/$Property/\`$$($Function.ToLower())"
     Write-Verbose "Endpoint Url: $endpointurl"
     
     try {
