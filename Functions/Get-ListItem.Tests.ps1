@@ -6,7 +6,7 @@ Describe "Get-ListItem" {
 
     # arrange
 
-    It "Should do something useful" {
+    It -Skip "Should do something useful" {
 
         # act
 
