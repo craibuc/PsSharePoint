@@ -1,7 +1,7 @@
 ﻿$here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
 . "$here\$sut"
-. .\Get-Property.ps1
+. "$here\Get-PropertyValue.ps1"
 
 Describe "Update-ListItem" {
 
