@@ -8,7 +8,7 @@
     ModuleToProcess = 'PsSharePoint.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.1.0'
+    ModuleVersion = '0.0.1'
 
     # ID used to uniquely identify this module
     GUID = 'B30FC3BA-A8E0-4A3F-BE44-9106DAE67A6E'
