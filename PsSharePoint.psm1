@@ -8,9 +8,9 @@ Get-ChildItem "$PSScriptRoot\Functions\*.ps1" |
     % { . $_ }
 
 # ListItem
-Export-ModuleMember Get-ListItem, Update-ListItem
-Export-ModuleMember -Alias spgli, spuli
+Export-ModuleMember Get-ListItem, Update-ListItem, Get-PropertyValue
+#Export-ModuleMember -Alias spgli, spuli
 
 # ListItem Attachments
-Export-ModuleMember Add-Attachments, Update-Attachments
-Export-ModuleMember -Alias spaa, spua
+Export-ModuleMember Add-Attachments, Update-Attachments, Remove-Attachments
+#Export-ModuleMember -Alias spaa, spua
