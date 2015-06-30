@@ -42,7 +42,8 @@ Function Update-ListItem()
         [int]$ItemId, 
 
         [Parameter(Mandatory=$True)]
-        [Hashtable]$Properties
+        #[Hashtable]$Properties
+        [PsCustomObject]$Properties
     )
 
   BEGIN { Write-Verbose "$($MyInvocation.MyCommand.Name)::Begin" }
