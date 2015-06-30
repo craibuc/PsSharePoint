@@ -41,9 +41,7 @@ Function Get-Attachments() {
     # XPath: /feed/entry/*
     # write to pipeline
     (Invoke-RestMethod -Uri $endpointUrl -Method Get -UseDefaultCredentials) | Foreach {
-        $i++
         [PsCustomObject]@{
-            '#'="$i";
             Title=$_.Title.'#text';
             Url=[System.Web.HttpUtility]::UrlDecode($_.Content.src);
             ContentType=$_.Content.type; 
