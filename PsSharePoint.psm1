@@ -7,6 +7,8 @@ Get-ChildItem "$PSScriptRoot\Functions\*.ps1" |
     Where-Object { $_.Name -like '*.ps1' -and $_.Name -notlike '__*' -and $_.Name -notlike '*.Tests*' } | 
     % { . $_ }
 
+Export-ModuleMember Get-PsCustomObject
+
 # ListItem
 Export-ModuleMember Get-ListItem, Update-ListItem, Get-PropertyValue
 #Export-ModuleMember -Alias spgli, spuli
