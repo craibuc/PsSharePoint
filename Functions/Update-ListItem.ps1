@@ -23,8 +23,16 @@
 .PARAMETER Properties
     The item's properties to be updated
 
+.PARAMETER PassThru
+    Return the Response object to pipeline if set
+
 .EXAMPLE
    PS> Update-ListItem -WebUrl "http://contoso.intranet.com" -ListName "Tasks" -ItemId 1 -Properties $ItemProperties
+
+.EXAMPLE
+    PS> Update-ListItem -WebUrl "http://contoso.intranet.com" -ListName "Tasks" -ItemId 1 -Properties $ItemProperties -PassThru
+
+    Same as previous example, but add Response object to pipeline.
 
 #>
 Function Update-ListItem()
@@ -43,7 +51,9 @@ Function Update-ListItem()
 
         [Parameter(Mandatory=$True)]
         #[Hashtable]$Properties
-        [PsCustomObject]$Properties
+        [PsCustomObject]$Properties,
+
+        [switch]$PassThru
     )
 
   BEGIN { Write-Verbose "$($MyInvocation.MyCommand.Name)::Begin" }
@@ -63,7 +73,8 @@ Function Update-ListItem()
     Write-Verbose "Item Payload: $ItemPayload"
     
     try {
-        $response = Invoke-WebRequest -Uri $endpointUrl -Method Post -UseDefaultCredentials -Headers $headers -ContentType "application/json" -Body $ItemPayload
+        $response = Invoke-WebRequest -Uri $endpointUrl -Method Post -UseDefaultCredentials -Headers $headers -ContentType "application/json" -Body $ItemPayload -Verbose:($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent -eq $true)
+        Write-Verbose ("{0} [{1}]" -f $response.StatusDescription, $response.StatusCode)
     }
 
     # Invoke-WebRequest throws System.Net.WebException
@@ -73,7 +84,7 @@ Function Update-ListItem()
 
     finally {
         # return response object
-        $response
+        if ($PassThru) { $response }
     }
 
   } #PROCESS
